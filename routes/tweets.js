@@ -5,7 +5,7 @@ const Tweet = require("../models/tweets");
 const User = require("../models/users");
 const { checkBody } = require("../modules/checkBody");
 
-router.post("/tweet", (req, res) => {
+router.post("/", (req, res) => {
   //vérifier que les champs soient remplis
   if (!checkBody(req.body, ["content"])) {
     res.json({ result: false, error: "Missing or empty fields" });
@@ -32,7 +32,7 @@ router.post("/tweet", (req, res) => {
   });
 });
 
-router.get("/tweet/:token", (req, res) => {
+router.get("/:token", (req, res) => {
   User.findOne({ token: req.params.token }).then((data) => {
     if (data) {
       Tweet.find()
